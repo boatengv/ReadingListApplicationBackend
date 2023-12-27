@@ -6,7 +6,7 @@ CREATE TABLE IF NOT EXISTS student
     password character varying(255) COLLATE pg_catalog."default",
     username character varying(255) COLLATE pg_catalog."default",
     CONSTRAINT student_pkey PRIMARY KEY (student_id)
-)
+);
 
 
 CREATE TABLE IF NOT EXISTS book
@@ -28,4 +28,4 @@ CREATE TABLE IF NOT EXISTS book
         REFERENCES public.student (student_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
