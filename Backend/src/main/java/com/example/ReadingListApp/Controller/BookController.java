@@ -9,19 +9,13 @@ import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.BookRecord;
 import com.example.ReadingListApp.Service.BookRetrievalService;
 import com.example.ReadingListApp.Service.BookService;
-import com.example.ReadingListApp.Service.StudentService;
 import com.fasterxml.jackson.core.JsonProcessingException;
-
-import lombok.extern.slf4j.Slf4j;
-
 import java.util.List;
 import java.util.UUID;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@Slf4j
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
 @RestController
 public class BookController {
     
