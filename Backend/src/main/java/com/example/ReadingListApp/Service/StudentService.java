@@ -1,13 +1,14 @@
 package com.example.ReadingListApp.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
 import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.Student;
 import com.example.ReadingListApp.Repository.StudentRepository;
+import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @Service
 public class StudentService {
     
@@ -35,12 +36,25 @@ public class StudentService {
     }
 
     public UUID getStudentId(String email) {
-        return studentRepository.findByEmail(email).get().getStudentId();
+        Student student = studentRepository.findByEmail(email).get();
+        student.setLoggedin(true);
+        studentRepository.save(student);
+        return student.getStudentId();
     }
 
     public List<Book> getStudentBookList(UUID studentId) {
         List<Book> bookList = studentRepository.findById(studentId).get().getBookList();
         return bookList;
+    }
+
+    public boolean getLogin(UUID studentId) {
+        return studentRepository.findById(studentId).get().isLoggedin();
+    }
+
+    public void Logout(UUID studentId) {
+        Student student = studentRepository.findById(studentId).get();
+        student.setLoggedin(false);
+        studentRepository.save(student);
     }
 
 }

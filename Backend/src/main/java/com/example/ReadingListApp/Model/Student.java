@@ -20,6 +20,7 @@ public class Student {
     private String username; 
     private String email; 
     private String password;  
+    private boolean loggedin;
 
     @OneToMany(mappedBy = "student", cascade=CascadeType.ALL)
     private List<Book> bookList;     

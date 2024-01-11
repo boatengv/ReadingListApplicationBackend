@@ -5,6 +5,7 @@ CREATE TABLE IF NOT EXISTS student
     name character varying(255) COLLATE pg_catalog."default",
     password character varying(255) COLLATE pg_catalog."default",
     username character varying(255) COLLATE pg_catalog."default",
+    loggedIn BOOLEAN DEFAULT false,
     CONSTRAINT student_pkey PRIMARY KEY (student_id)
 );
 

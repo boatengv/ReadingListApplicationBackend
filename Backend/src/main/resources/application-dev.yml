@@ -3,6 +3,8 @@ spring:
     url: jdbc:postgresql://localhost:5432/ReadingListApp
     username: postgres
 
+
+
   sql:
     init:
       mode: always

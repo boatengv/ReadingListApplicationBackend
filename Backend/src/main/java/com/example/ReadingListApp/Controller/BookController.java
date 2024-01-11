@@ -15,7 +15,8 @@ import java.util.UUID;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
+//@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class BookController {
     
@@ -42,9 +43,12 @@ public class BookController {
         bookService.addBook(studentId, isbn, state);
     }
 
-    @DeleteMapping("/api/RemoveBook/{bookId}")
-    public void removeBook(@PathVariable UUID bookId){
-        bookService.removeBook(bookId);
+    @DeleteMapping("/api/RemoveBook")
+    public void removeBook(
+        @RequestParam UUID studentId,
+        @RequestParam UUID bookId
+    ){
+        bookService.removeBook(studentId, bookId);
     }
 
     @PutMapping("/api/UpdateBookState")

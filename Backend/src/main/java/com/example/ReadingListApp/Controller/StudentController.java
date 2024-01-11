@@ -1,6 +1,5 @@
 package com.example.ReadingListApp.Controller;
 import org.springframework.web.bind.annotation.RestController;
-
 import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.Student;
 import com.example.ReadingListApp.Service.StudentService;
@@ -10,12 +9,13 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
-
-@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
+//@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class StudentController {
 
@@ -40,6 +40,16 @@ public class StudentController {
     @GetMapping("/api/GetStudent/{studentId}")
     public Student getStudentById(@PathVariable UUID studentId) {
         return studentService.getStudentById(studentId);
+    }
+
+    @GetMapping("/api/GetLogin/{studentId}")
+    public boolean getLogin(@PathVariable UUID studentId) {
+        return studentService.getLogin(studentId);
+    }
+
+    @PutMapping("/api/Logout/{studentId}")
+    public void Logout(@PathVariable UUID studentId) {
+        studentService.Logout(studentId);
     }
 
     @GetMapping("/api/GetStudentBookList/{studentId}")

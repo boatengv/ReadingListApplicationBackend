@@ -8,6 +8,7 @@ import com.example.ReadingListApp.Repository.BookRepository;
 import com.example.ReadingListApp.Repository.StudentRepository;
 import com.fasterxml.jackson.core.JsonProcessingException;
 
+import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
 
 import java.util.List;
@@ -57,8 +58,9 @@ public class BookService{
         return bookRepository.findAll();
     }
 
-    public void removeBook(UUID bookId) {
-        bookRepository.deleteById(bookId);
+    @Transactional
+    public void removeBook(UUID studentId, UUID bookId) {
+        bookRepository.deleteByBookIdAndStudent_StudentId(bookId,studentId);
     }
 
     public void updateBookState(UUID studentId, UUID bookId, String newState) {
