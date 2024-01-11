@@ -15,8 +15,7 @@ import java.util.UUID;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-//@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
 @RestController
 public class BookController {
     

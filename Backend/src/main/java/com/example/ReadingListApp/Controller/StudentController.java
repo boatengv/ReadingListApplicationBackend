@@ -14,8 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
-//@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
-@CrossOrigin("http://localhost:3000")
+@CrossOrigin("https://readinglistapplicationfrontend-24c7129af5cb.herokuapp.com")
 @RestController
 public class StudentController {
 
