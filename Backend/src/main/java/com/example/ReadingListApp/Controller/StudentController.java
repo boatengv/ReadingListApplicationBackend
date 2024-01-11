@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
-@CrossOrigin("https://frontend-kg0wxycys-boatengvs-projects.vercel.app")
+@CrossOrigin("https://frontend-green-seven-15.vercel.app")
 @RestController
 public class StudentController {
 
