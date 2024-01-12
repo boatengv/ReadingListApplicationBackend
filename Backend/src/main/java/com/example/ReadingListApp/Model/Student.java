@@ -17,7 +17,6 @@ public class Student {
     @Id@GeneratedValue
     private UUID studentId; 
     private String name; 
-    private String username; 
     private String email; 
     private String password;  
     private boolean loggedin;
@@ -25,9 +24,8 @@ public class Student {
     @OneToMany(mappedBy = "student", cascade=CascadeType.ALL)
     private List<Book> bookList;     
 
-    public Student(String name, String username, String email, String password){
+    public Student(String name, String email, String password){
         this.name=name;
-        this.username=username;
         this.email=email; 
         this.password=password;
     }

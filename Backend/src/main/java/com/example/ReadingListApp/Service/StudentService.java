@@ -4,11 +4,9 @@ import org.springframework.stereotype.Service;
 import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.Student;
 import com.example.ReadingListApp.Repository.StudentRepository;
-import lombok.extern.slf4j.Slf4j;
 import java.util.List;
 import java.util.UUID;
 
-@Slf4j
 @Service
 public class StudentService {
     
@@ -23,8 +21,13 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public void addStudent(String name, String username, String email, String password) {
-        studentRepository.save(new Student(name, username, email, password));
+    public boolean addStudent(String name, String email, String password) {
+        try {
+            studentRepository.save(new Student(name, email, password));
+            return true;
+        } catch(org.springframework.dao.DataIntegrityViolationException e){
+            return false;
+        }        
     }
 
     public Student getStudentById(UUID studentId) {

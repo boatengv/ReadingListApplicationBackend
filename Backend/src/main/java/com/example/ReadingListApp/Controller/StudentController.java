@@ -3,6 +3,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.Student;
 import com.example.ReadingListApp.Service.StudentService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
+@Slf4j
 @CrossOrigin("https://frontend-green-seven-15.vercel.app")
 @RestController
 public class StudentController {
@@ -35,7 +37,6 @@ public class StudentController {
         return studentService.getStudentId(email);
     }
     
-
     @GetMapping("/api/GetStudent/{studentId}")
     public Student getStudentById(@PathVariable UUID studentId) {
         return studentService.getStudentById(studentId);
@@ -56,13 +57,13 @@ public class StudentController {
         return studentService.getStudentBookList(studentId);
     }
     
-    @PutMapping("/api/AddStudent")
-    public void postMethodName(
+    @PostMapping("/api/AddStudent")
+    public boolean postMethodName(
         @RequestParam String name,
         @RequestParam String email,
         @RequestParam String password 
     ) {
-        studentService.addStudent(name, "default", email, password);
+        return studentService.addStudent(name, email, password);
     }
     
     @DeleteMapping("/api/RemoveStudent/{studentId}")

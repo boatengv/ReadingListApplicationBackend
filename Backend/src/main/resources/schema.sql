@@ -1,12 +1,12 @@
-CREATE TABLE IF NOT EXISTS student
+CREATE TABLE IF NOT EXISTS public.student
 (
     student_id uuid NOT NULL,
     email character varying(255) COLLATE pg_catalog."default",
     name character varying(255) COLLATE pg_catalog."default",
     password character varying(255) COLLATE pg_catalog."default",
-    username character varying(255) COLLATE pg_catalog."default",
-    loggedIn BOOLEAN DEFAULT false,
-    CONSTRAINT student_pkey PRIMARY KEY (student_id)
+    loggedin boolean DEFAULT false,
+    CONSTRAINT student_pkey PRIMARY KEY (student_id),
+    CONSTRAINT uniq_email UNIQUE (email)
 );
 
 
