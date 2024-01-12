@@ -63,7 +63,7 @@ public class StudentController {
         @RequestParam String email,
         @RequestParam String password 
     ) {
-        studentService.addStudent(name, username, email, password);
+        studentService.addStudent(name, "default", email, password);
     }
     
     @DeleteMapping("/api/RemoveStudent/{studentId}")
