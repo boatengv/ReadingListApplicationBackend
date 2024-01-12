@@ -56,10 +56,9 @@ public class StudentController {
         return studentService.getStudentBookList(studentId);
     }
     
-    @PostMapping("/api/AddStudent")
+    @PutMapping("/api/AddStudent")
     public void postMethodName(
         @RequestParam String name,
-        @RequestParam String username,
         @RequestParam String email,
         @RequestParam String password 
     ) {
