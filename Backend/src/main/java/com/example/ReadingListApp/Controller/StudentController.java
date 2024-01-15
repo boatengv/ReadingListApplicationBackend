@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Slf4j
-@CrossOrigin("https://frontend-green-seven-15.vercel.app")
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class StudentController {
 

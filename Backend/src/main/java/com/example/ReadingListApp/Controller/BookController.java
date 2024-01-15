@@ -15,7 +15,7 @@ import java.util.UUID;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-@CrossOrigin("https://frontend-green-seven-15.vercel.app")
+@CrossOrigin("http://localhost:3000")
 @RestController
 public class BookController {
     
