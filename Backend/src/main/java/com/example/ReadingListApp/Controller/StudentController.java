@@ -2,6 +2,7 @@ package com.example.ReadingListApp.Controller;
 import org.springframework.web.bind.annotation.RestController;
 import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Model.Student;
+import com.example.ReadingListApp.Model.VerifyEmailDTO;
 import com.example.ReadingListApp.Service.StudentService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +34,7 @@ public class StudentController {
     }
 
     @GetMapping("/api/GetStudentId/{email}")
-    public UUID getStudentId(@PathVariable String email) {
+    public VerifyEmailDTO getStudentId(@PathVariable String email) {
         return studentService.getStudentId(email);
     }
     
@@ -61,9 +62,10 @@ public class StudentController {
     public boolean postMethodName(
         @RequestParam String name,
         @RequestParam String email,
-        @RequestParam String password 
+        @RequestParam String password,
+        @RequestParam String salt
     ) {
-        return studentService.addStudent(name, email, password);
+        return studentService.addStudent(name, email, password, salt);
     }
     
     @DeleteMapping("/api/RemoveStudent/{studentId}")

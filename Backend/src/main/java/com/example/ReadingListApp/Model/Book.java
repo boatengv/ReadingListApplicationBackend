@@ -16,29 +16,31 @@ public class Book {
   
     @Id@GeneratedValue
     private UUID bookId;
-    private String isbn;
-    private String title; 
-    private String subtitle;
+    private String title;
+    private String thumbnail;
     private String authors; 
-    private String state;
-    private String imageUrlSmall;
-    private String imageUrlMedium;
-    private String imageUrlLarge;
+    private String categories; 
+    private int page_count; 
+    private String publisher; 
     private String publishedDate;
+    private String state;  
+    private String description;
+    private long timestamp;
 
     @ManyToOne@JsonIgnore
     @JoinColumn(name = "student_id") 
     private Student student; 
 
-    public Book(String isbn, String title, String subtitle, String authors, String state, String imageUrlSmall, String imageUrlMedium, String imageUrlLarge, String publishedDate){
-        this.isbn = isbn;
+    public Book(String title, String thumbnail, String authors, String categories, int page_count, String publisher, String publishedDate, String state, String description, long timestamp){
         this.title = title; 
-        this.subtitle = subtitle;
+        this.thumbnail = thumbnail;
         this.authors = authors;
-        this.state = state;
-        this.imageUrlSmall = imageUrlSmall; 
-        this.imageUrlMedium = imageUrlMedium;
-        this.imageUrlLarge = imageUrlLarge;
+        this.categories = categories;
+        this.page_count = page_count;
+        this.publisher = publisher;
         this.publishedDate = publishedDate;
+        this.state = state;
+        this.description = description;
+        this.timestamp = timestamp;
     }
 }

@@ -20,14 +20,16 @@ public class Student {
     private String email; 
     private String password;  
     private boolean loggedin;
+    private String salt;
 
     @OneToMany(mappedBy = "student", cascade=CascadeType.ALL)
     private List<Book> bookList;     
 
-    public Student(String name, String email, String password){
+    public Student(String name, String email, String password, String salt){
         this.name=name;
         this.email=email; 
         this.password=password;
+        this.salt = salt;
     }
     
 }
