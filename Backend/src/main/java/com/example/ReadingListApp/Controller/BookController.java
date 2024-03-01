@@ -5,15 +5,14 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.ReadingListApp.Model.Book;
 import com.example.ReadingListApp.Service.BookService;
-import lombok.extern.slf4j.Slf4j;
-import java.util.List;
-import java.util.UUID;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import com.example.ReadingListApp.Model.Book;
 
-@Slf4j
+import java.util.List;
+import java.util.UUID;
+
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class BookController {
@@ -25,42 +24,52 @@ public class BookController {
         this.bookService = bookService;
     }
 
-    @GetMapping("/api/GetBookList")
-    public List<Book> getBookList(){     
-        return bookService.getBookList();
-    }    
-
     @PostMapping("/api/AddBook")
     public boolean addBook(
+        @RequestParam String bookId,
         @RequestParam UUID studentId,
         @RequestParam String title,
-        @RequestParam String thumbnail,
         @RequestParam String authors,
-        @RequestParam String categories, 
-        @RequestParam int page_count,
         @RequestParam String publisher, 
         @RequestParam String publishedDate,
-        @RequestParam String state,
+        @RequestParam int pageCount,
+        @RequestParam String category, 
         @RequestParam String description, 
+        @RequestParam String thumbnail,
         @RequestParam long timestamp
     ) {
-        return bookService.addBook(studentId, title, thumbnail, authors, categories, page_count, publisher, publishedDate, state, description, timestamp);
+        return bookService.addBook(bookId, studentId, title, authors, publisher, publishedDate, pageCount, category, description, thumbnail, timestamp);
     } 
 
     @DeleteMapping("/api/RemoveBook")
     public void removeBook(
-        @RequestParam UUID studentId,
-        @RequestParam UUID bookId
+        @RequestParam String bookId,
+        @RequestParam UUID studentId
     ){
-        bookService.removeBook(studentId, bookId);
+        bookService.removeBook(bookId, studentId);
     }
 
-    @PutMapping("/api/UpdateBookState")
-    public void updateBookState(
+    @PutMapping("/api/ChangeBookState")
+    public void changeBookState(
+        @RequestParam String bookId,
         @RequestParam UUID studentId,
-        @RequestParam UUID bookId,
-        @RequestParam String newState
+        @RequestParam String state
     ){
-        bookService.updateBookState(studentId, bookId, newState);
+        bookService.changeBookState(bookId, studentId, state); 
     } 
+
+    @PutMapping("/api/RateBook")
+    public void rateBook(
+        @RequestParam String bookId,
+        @RequestParam UUID studentId,
+        @RequestParam double review
+    ){
+        bookService.rateBook(bookId, studentId, review); 
+    }
+
+    @GetMapping("/api/GetBooks")
+    public List<Book> getBookList(){
+        return bookService.getBookList(); 
+    }
+
 }

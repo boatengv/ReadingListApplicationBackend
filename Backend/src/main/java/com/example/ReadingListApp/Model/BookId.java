@@ -1,34 +1,24 @@
 package com.example.ReadingListApp.Model;
 import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.Embeddable;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import java.io.Serializable;
 import java.util.UUID;
 
-@Entity
+@Embeddable
 @Getter@Setter@NoArgsConstructor
-@IdClass(BookId.class)
-public class Book {
-  
-    @Id
+public class BookId implements Serializable {
+
     @Column(name = "book_id")
     private String bookId;
-    @Id
+
     @Column(name = "student_id")
     private UUID studentId;
-    private String state;
-    private long timestamp;
-    private double review; 
 
-    public Book(String bookId, UUID studentId, String state, long timestamp){
+    public BookId(String bookId,UUID studentId) {
         this.bookId = bookId;
         this.studentId = studentId;
-        this.state = state;
-        this.timestamp = timestamp;
     }
-
-
 }

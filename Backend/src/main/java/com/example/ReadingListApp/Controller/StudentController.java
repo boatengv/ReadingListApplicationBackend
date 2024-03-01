@@ -1,10 +1,10 @@
 package com.example.ReadingListApp.Controller;
 import org.springframework.web.bind.annotation.RestController;
-import com.example.ReadingListApp.Model.Book;
+import com.example.ReadingListApp.Model.BookDetails;
+import com.example.ReadingListApp.Model.BookDetailsList;
 import com.example.ReadingListApp.Model.Student;
-import com.example.ReadingListApp.Model.VerifyEmailDTO;
+import com.example.ReadingListApp.Model.StudentDetails;
 import com.example.ReadingListApp.Service.StudentService;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 import java.util.UUID;
 
-@Slf4j
 @CrossOrigin("http://localhost:3000")
 @RestController
 public class StudentController {
@@ -34,7 +33,7 @@ public class StudentController {
     }
 
     @GetMapping("/api/GetStudentId/{email}")
-    public VerifyEmailDTO getStudentId(@PathVariable String email) {
+    public Student getStudentId(@PathVariable String email) {
         return studentService.getStudentId(email);
     }
     
@@ -54,7 +53,7 @@ public class StudentController {
     }
 
     @GetMapping("/api/GetStudentBookList/{studentId}")
-    public List<Book> getStudentBookList(@PathVariable UUID studentId) {
+    public List<BookDetailsList> getStudentBookList(@PathVariable UUID studentId) {
         return studentService.getStudentBookList(studentId);
     }
     
