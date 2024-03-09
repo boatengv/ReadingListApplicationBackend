@@ -1,10 +1,7 @@
 package com.example.ReadingListApp.Model;
 import java.util.List;
 import java.util.UUID;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -22,11 +19,14 @@ public class Student {
     @Column(name = "logged_in")
     private boolean loggedin;
 
+    @OneToMany
+    @JoinColumn(name = "student_id")
+    private List<Book> book;
+
     public Student(String name, String email, String password, String salt){
         this.name=name;
         this.email=email; 
         this.password=password;
         this.salt = salt;
     }
-    
 }

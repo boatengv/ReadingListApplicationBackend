@@ -1,10 +1,10 @@
-package com.example.ReadingListApp.Model;
+package com.example.ReadingListApp.DTO;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter@Setter@NoArgsConstructor
-public class BookDetailsList {
+public class BookDTO {
     
     private String bookId;
     private String title;    
@@ -17,25 +17,11 @@ public class BookDetailsList {
     private String thumbnail;
     private String state;
     private long timestamp;
-    private double review; 
     private double AVG_review;
 
 
-    public BookDetailsList(
-        String bookId, 
-        String title, 
-        String authors, 
-        String publisher, 
-        String publishedDate, 
-        int pageCount, 
-        String category, 
-        String description, 
-        String thumbnail, 
-        String state, 
-        long timestamp, 
-        double review,
-        double AVG_review
-    ){
+    public BookDTO(String bookId, String title, String authors, String publisher, String publishedDate, int pageCount,
+        String category, String description, String thumbnail, String state, long timestamp, double AVG_review){
         this.bookId = bookId;
         this.title = title;
         this.authors = authors; 
@@ -47,7 +33,6 @@ public class BookDetailsList {
         this.thumbnail = thumbnail; 
         this.state = state;
         this.timestamp = timestamp;
-        this.review = review;
         this.AVG_review = AVG_review;
     }
 }

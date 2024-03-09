@@ -1,4 +1,5 @@
 package com.example.ReadingListApp.Controller;
+import com.example.ReadingListApp.DTO.BookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -68,7 +69,7 @@ public class BookController {
     }
 
     @GetMapping("/api/GetBooks")
-    public List<Book> getBookList(){
+    public List<BookDTO> getBookList(){
         return bookService.getBookList(); 
     }
 

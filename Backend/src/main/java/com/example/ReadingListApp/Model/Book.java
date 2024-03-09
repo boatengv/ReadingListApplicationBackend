@@ -1,8 +1,5 @@
 package com.example.ReadingListApp.Model;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.IdClass;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -21,7 +18,11 @@ public class Book {
     private UUID studentId;
     private String state;
     private long timestamp;
-    private double review; 
+    private double review;
+
+    @ManyToOne
+    @JoinColumn(name = "book_id", insertable = false, updatable = false)
+    private BookDetails bookDetails;
 
     public Book(String bookId, UUID studentId, String state, long timestamp){
         this.bookId = bookId;

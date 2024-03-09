@@ -1,11 +1,9 @@
 package com.example.ReadingListApp.Service;
+import com.example.ReadingListApp.DTO.BookDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.example.ReadingListApp.Model.Book;
-import com.example.ReadingListApp.Model.BookDetails;
-import com.example.ReadingListApp.Model.BookDetailsList;
 import com.example.ReadingListApp.Model.Student;
-import com.example.ReadingListApp.Model.StudentDetails;
 import com.example.ReadingListApp.Repository.BookDetailsRepository;
 import com.example.ReadingListApp.Repository.BookRepository;
 import com.example.ReadingListApp.Repository.StudentRepository;
@@ -33,9 +31,9 @@ public class StudentService {
         return studentRepository.findAll();
     }
 
-    public boolean addStudent(String name, String email, String password, String salt) {
+    public boolean addStudent(Student student) {
         try {
-            studentRepository.save(new Student(name, email, password, salt));
+            studentRepository.save(student);
             return true;
         } catch(org.springframework.dao.DataIntegrityViolationException e){
             return false;
@@ -57,37 +55,30 @@ public class StudentService {
         return student;
     }
 
-    public List<BookDetailsList> getStudentBookList(UUID studentId) {
-        Student student = studentRepository.findById(studentId).get();
+    public List<BookDTO> getStudentBookList(UUID studentId) {
+
         List<Book> bookList = bookRepository.findByStudentId(studentId);
-        List<BookDetailsList> bookDetailsList = new ArrayList<BookDetailsList>();
+        List<BookDTO> bookDTOList = new ArrayList<>();
 
-        //log.info("book list is of length {}",bookList.size());
-
-        StudentDetails studentDetails = new StudentDetails();
-        studentDetails.setStudent(student);
-
-        for(int i=0; i < bookList.size(); i++){
-            bookDetailsList.add(
-                new BookDetailsList(
-                    bookList.get(i).getBookId(), 
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getTitle(),
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getAuthors(), 
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getPublisher(), 
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getPublishedDate(), 
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getPageCount(),  
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getCategory(),  
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getDescription(),  
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getThumbnail(),  
-                    bookList.get(i).getState(),
-                    bookList.get(i).getTimestamp(),
-                    bookList.get(i).getReview(), 
-                    bookDetailsRepository.findById(bookList.get(i).getBookId()).get().getAVG_review()
-                )
+        for(int i = 0; i < bookList.size(); i++){
+            bookDTOList.add(new BookDTO(
+                bookList.get(i).getBookId(),
+                bookList.get(i).getBookDetails().getTitle(),
+                bookList.get(i).getBookDetails().getAuthors(),
+                bookList.get(i).getBookDetails().getPublisher(),
+                bookList.get(i).getBookDetails().getPublishedDate(),
+                bookList.get(i).getBookDetails().getPageCount(),
+                bookList.get(i).getBookDetails().getCategory(),
+                bookList.get(i).getBookDetails().getDescription(),
+                bookList.get(i).getBookDetails().getThumbnail(),
+                bookList.get(i).getState(),
+                bookList.get(i).getTimestamp(),
+                bookList.get(i).getBookDetails().getAVG_review()
+                    )
             );
         }
 
-        return bookDetailsList;
+        return bookDTOList;
     }
 
     public boolean getLogin(UUID studentId) {

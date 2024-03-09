@@ -1,18 +1,11 @@
 package com.example.ReadingListApp.Controller;
-import org.springframework.web.bind.annotation.RestController;
-import com.example.ReadingListApp.Model.BookDetails;
-import com.example.ReadingListApp.Model.BookDetailsList;
+import com.example.ReadingListApp.DTO.BookDTO;
+import com.example.ReadingListApp.Model.Book;
+import org.springframework.web.bind.annotation.*;
 import com.example.ReadingListApp.Model.Student;
-import com.example.ReadingListApp.Model.StudentDetails;
 import com.example.ReadingListApp.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+
 import java.util.List;
 import java.util.UUID;
 
@@ -53,18 +46,13 @@ public class StudentController {
     }
 
     @GetMapping("/api/GetStudentBookList/{studentId}")
-    public List<BookDetailsList> getStudentBookList(@PathVariable UUID studentId) {
+    public List<BookDTO> getStudentBookList(@PathVariable UUID studentId) {
         return studentService.getStudentBookList(studentId);
     }
     
     @PostMapping("/api/AddStudent")
-    public boolean postMethodName(
-        @RequestParam String name,
-        @RequestParam String email,
-        @RequestParam String password,
-        @RequestParam String salt
-    ) {
-        return studentService.addStudent(name, email, password, salt);
+    public boolean postMethodName(@RequestBody Student student) {
+        return studentService.addStudent(student);
     }
     
     @DeleteMapping("/api/RemoveStudent/{studentId}")
